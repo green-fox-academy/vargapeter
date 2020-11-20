@@ -1,7 +1,9 @@
 public class PrintEven {
     public static void main(String[] args) {
+
         int maximum = 500;
         System.out.println(maximum);
+
         for(int i=1; i <= maximum; i++){
             if (i%2==0){
                 System.out.print(i + " ");

@@ -2,10 +2,13 @@ import java.util.Scanner;
 
 public class OneTwoALot {
     public static void main(String[] args) {
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Give me a number: ");
+
         int num = scan.nextInt();
         scan.close();
+
         if (num <= 0)
             System.out.println("Not enough.");
         if (num == 1)

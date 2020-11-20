@@ -2,10 +2,14 @@ import java.util.Scanner;
 
 public class OddEven {
     public static void main(String[] args) {
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Give me a number: ");
+
         int num = scan.nextInt();
+
         scan.close();
+
         if ( num % 2 == 0 )
             System.out.println("Your number is even.");
         else
