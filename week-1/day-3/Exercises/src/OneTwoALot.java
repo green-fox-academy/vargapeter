@@ -9,14 +9,15 @@ public class OneTwoALot {
         int num = scan.nextInt();
         scan.close();
 
-        if (num <= 0)
+        if (num <= 0) {
             System.out.println("Not enough.");
-        if (num == 1)
+        } else if (num == 1) {
             System.out.println("One");
-        if (num == 2)
+        } else if (num == 2) {
             System.out.println("Two");
-        if (num > 2)
+        } else if (num > 2) {
             System.out.println("A lot.");
+        }
 
         // Write a program that reads a number form the standard input,
         // If the number is zero or smaller it should print: Not enough
