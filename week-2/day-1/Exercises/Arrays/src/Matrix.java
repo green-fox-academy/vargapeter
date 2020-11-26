@@ -20,14 +20,14 @@ public class Matrix {
 
         scan.close();
 
-        int[][] matrix = new int[size][size];
+        int[][] matrix = new int[size][size]; //2 dimensional array 0 in standard java
 
-        for (int i = 0; i < size; i++) {
-            matrix[i][i] = 1;
+        for (int i = 0; i < size; i++) { //size-1 last value
+            matrix[i][i] = 1; //x y symmetric steps
         }
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        for (int j = 0; j < size; j++) { //y coordinates
+            for (int i = 0; i < size; i++) { //x coordinate
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();

@@ -1,32 +1,30 @@
 import javax.swing.*;
+
 import java.awt.*;
-import java.util.Random;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class CenteredSquare {
-
+public class CheckerBoard {
     public static void mainDraw(Graphics graphics) {
-        // Draw a green 10x10 square to the canvas' center.
-         for (int i = 0; i < 200; i++) {
-            int size = getRandom(Math.min(WIDTH, HEIGHT)); //a kissebbiket adja vissza
+        // Fill the canvas with a checkerboard pattern.
+        int x = 0;
+        int y = 0;
+        int size = 50;
 
-            graphics.drawRect(WIDTH / 2 - size / 2, HEIGHT / 2 - size / 2, size, size);
+        for (int j = 0; j < 6; j++) {
+            for (int i = 0; i < 6; i++) {
+                graphics.fillRect(x + (j * size), y + (j * size), size, size);
+
+            }
+
+            x += (2 * size);
         }
 
     }
 
-    private static int getRandom(int max) {
-        Random rand = new Random();
-        int n = rand.nextInt(max);
-        n += 1;
-        return n;
-    }
-
     // Don't touch the code below
-    // Don't touch the code below
-    static int WIDTH = 720;
-    static int HEIGHT = 720;
+    static int WIDTH = 300;
+    static int HEIGHT = 300;
 
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Drawing");
@@ -44,7 +42,6 @@ public class CenteredSquare {
         protected void paintComponent(Graphics graphics) {
             super.paintComponent(graphics);
             mainDraw(graphics);
-            repaint();
         }
     }
 }

@@ -2,20 +2,21 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.util.Random;
+import javax.swing.Timer;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class FillWithRectangles {
     // Don't touch the code below
-    static int WIDTH = 320;
-    static int HEIGHT = 320;
+    static int WIDTH = 720;
+    static int HEIGHT = 720;
 
     public static void mainDraw(Graphics graphics) {
         // draw four different size and color rectangles.
         // avoid code duplication.
         for (int i = 0; i < 100; i++) {
             graphics.setColor(getRandomColor());
-            graphics.fill3DRect(getRandom(200), getRandom(200), getRandom(200), getRandom(200),true);
+            graphics.fill3DRect(getRandom(500), getRandom(500), getRandom(500), getRandom(500),true);
         }
     }
 
@@ -50,6 +51,7 @@ public class FillWithRectangles {
         protected void paintComponent(Graphics graphics) {
             super.paintComponent(graphics);
             mainDraw(graphics);
+            repaint(1000);
         }
     }
 }

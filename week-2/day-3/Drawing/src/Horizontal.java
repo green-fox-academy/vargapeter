@@ -58,6 +58,7 @@ public class Horizontal {
         protected void paintComponent(Graphics graphics) {
             super.paintComponent(graphics);
             mainDraw(graphics);
+            repaint();
         }
     }
 }

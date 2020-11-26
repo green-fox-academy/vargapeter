@@ -1,32 +1,24 @@
 import javax.swing.*;
+
 import java.awt.*;
-import java.util.Random;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class CenteredSquare {
-
+public class FunctionToCenter {
     public static void mainDraw(Graphics graphics) {
-        // Draw a green 10x10 square to the canvas' center.
-         for (int i = 0; i < 200; i++) {
-            int size = getRandom(Math.min(WIDTH, HEIGHT)); //a kissebbiket adja vissza
+        // Create a function that draws a single line and takes 3 parameters:
+        // The x and y coordinates of the line's starting point and the graphics
+        // and draws a line from that point to the center of the canvas.
+        // Fill the canvas with lines from the edges, every 20 px, to the center.
 
-            graphics.drawRect(WIDTH / 2 - size / 2, HEIGHT / 2 - size / 2, size, size);
-        }
+
+
 
     }
 
-    private static int getRandom(int max) {
-        Random rand = new Random();
-        int n = rand.nextInt(max);
-        n += 1;
-        return n;
-    }
-
     // Don't touch the code below
-    // Don't touch the code below
-    static int WIDTH = 720;
-    static int HEIGHT = 720;
+    static int WIDTH = 320;
+    static int HEIGHT = 320;
 
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Drawing");
@@ -44,7 +36,6 @@ public class CenteredSquare {
         protected void paintComponent(Graphics graphics) {
             super.paintComponent(graphics);
             mainDraw(graphics);
-            repaint();
         }
     }
 }
