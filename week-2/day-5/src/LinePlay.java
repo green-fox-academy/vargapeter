@@ -2,27 +2,32 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.util.Random;
-import javax.swing.Timer;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class FillWithRectangles {
-    // Don't touch the code below
-    static int WIDTH = 360;
-    static int HEIGHT = 360;
+public class LinePlay {
+    static int WIDTH = 320;
+    static int HEIGHT = 320;
 
     public static void mainDraw(Graphics graphics) {
-        // draw four different size and color rectangles.
-        // avoid code duplication.
-        for (int i = 0; i < 10; i++) {
-            graphics.setColor(getRandomColor());
-            graphics.fill3DRect(getRandom(500), getRandom(500), getRandom(500), getRandom(500),true);
+        for (int i = 0; i <= WIDTH / 20; i++) {
+//            drawLine(graphics, 0 + i * 20, 0);
+//            drawLine(graphics, WIDTH, i * 20);
+//            drawLine(graphics, WIDTH - i * 20, HEIGHT);
+//            drawLine(graphics, 0, HEIGHT - i * 20);
+            graphics.drawLine(0 + i * 20, 0, WIDTH, i * 20);
+
         }
+
     }
 
-    private static int getRandom(int max) {
+    private static void drawLine(Graphics graphics, int x, int y) {
+        graphics.drawLine(x, y, WIDTH / 2, HEIGHT / 2);
+    }
+
+    private static int getRandom() {
         Random rand = new Random();
-        int n = rand.nextInt(max);
+        int n = rand.nextInt(320);
         n += 1;
         return n;
     }
@@ -35,6 +40,7 @@ public class FillWithRectangles {
         return new Color(r, g, b);
     }
 
+    // Don't touch the code below
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Drawing");
         jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -51,7 +57,6 @@ public class FillWithRectangles {
         protected void paintComponent(Graphics graphics) {
             super.paintComponent(graphics);
             mainDraw(graphics);
-            repaint(1000);
         }
     }
 }

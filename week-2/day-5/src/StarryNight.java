@@ -1,26 +1,33 @@
 import javax.swing.*;
+
 import java.awt.*;
+import java.util.Random;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-import java.util.Random;
-
-public class Horizontal {
+public class StarryNight {
     public static void mainDraw(Graphics graphics) {
-        // Create a function that draws a single line and takes 3 parameters:
-        // The x and y coordinates of the line's starting point and the graphics
-        // and draws a 50 long horizontal line from that point.
-        // Draw at least 3 lines with that function using a loop.
+        // Draw the night sky:
+        //  - The background should be black
+        //  - The stars can be small squares
+        //  - The stars should have random positions on the canvas
+        //  - The stars should have random color (some shade of grey)
+        for (int i = 0; i < 500; i++) {
+            drawRect(graphics, getRandom(), getRandom());
+        }
         for (int i = 0; i < 1000; i++) {
-            int n = getRandom();
-            drawLine(graphics, getRandom(), getRandom());
+            drawColoredRect(graphics, getRandom(), getRandom());
         }
 
     }
 
-    private static void drawLine(Graphics graphics, int x, int y) {
+    private static void drawRect(Graphics graphics, int x, int y) {
+        graphics.setColor(getRandomShade());
+        graphics.drawRect(x, y, 1, 1);
+    }
+    private static void drawColoredRect(Graphics graphics, int x, int y) {
         graphics.setColor(getRandomColor());
-        graphics.drawLine(HEIGHT/2, WIDTH/2, x + 50, y+50);
+        graphics.drawRect(x, y, 1, 1);
     }
 
     private static int getRandom() {
@@ -28,6 +35,12 @@ public class Horizontal {
         int n = rand.nextInt(320);
         n += 1;
         return n;
+    }
+
+    private static Color getRandomShade() {
+        Random rand = new Random();
+        float l = rand.nextFloat()*0.8f+0.2f;
+        return new Color(l, l, l);
     }
 
     private static Color getRandomColor() {
@@ -47,6 +60,7 @@ public class Horizontal {
         jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         ImagePanel panel = new ImagePanel();
         panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        panel.setBackground(Color.black);
         jFrame.add(panel);
         jFrame.setLocationRelativeTo(null);
         jFrame.setVisible(true);
