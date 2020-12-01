@@ -12,10 +12,10 @@ public class StarryNight {
         //  - The stars can be small squares
         //  - The stars should have random positions on the canvas
         //  - The stars should have random color (some shade of grey)
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 1000; i++) {
             drawRect(graphics, getRandom(), getRandom());
         }
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 4000; i++) {
             drawColoredRect(graphics, getRandom(), getRandom());
         }
 
@@ -32,7 +32,7 @@ public class StarryNight {
 
     private static int getRandom() {
         Random rand = new Random();
-        int n = rand.nextInt(320);
+        int n = rand.nextInt(640);
         n += 1;
         return n;
     }
@@ -52,8 +52,8 @@ public class StarryNight {
     }
 
     // Don't touch the code below
-    static int WIDTH = 320;
-    static int HEIGHT = 320;
+    static int WIDTH = 640;
+    static int HEIGHT = 640;
 
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Drawing");
