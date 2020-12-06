@@ -13,7 +13,7 @@ public class fibonacci {
 
     public static void main (String args[])
     {
-        int n = 9;
+        int n = 3;
         System.out.println(fibonacci(n-1));
     }
 }

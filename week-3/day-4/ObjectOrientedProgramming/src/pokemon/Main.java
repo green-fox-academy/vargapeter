@@ -19,7 +19,7 @@ public class Main {
         String choosenOne = null;
 
         for (int i = 0; i < pokemonOfAsh.size(); i++) {
-            if(wildPokemon.type.equals(pokemonOfAsh.get(i).effectiveAgainst)){
+            if (pokemonOfAsh.get(i).isEffectiveAgainst(wildPokemon)) {
                  choosenOne = pokemonOfAsh.get(i).name;
             }
         }
