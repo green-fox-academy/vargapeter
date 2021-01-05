@@ -1,6 +1,6 @@
 public class Anagram {
     public static void main(String[] args) {
-        boolean ok = isAnagram("green", "fox");
+        boolean ok = isAnagram("green", "neerg");
         System.out.println(ok);
 
     }
