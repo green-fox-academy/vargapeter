@@ -39,7 +39,3 @@ table th {
 table tr:nth-child(odd) td{
     background: rgb(231, 231, 231);
 }
-
-thead th{
-    border-top-right-radius: 4px;  
-}
