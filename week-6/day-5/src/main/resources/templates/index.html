@@ -32,7 +32,7 @@
     <tr th:each="items: ${itemsList}">
         <td th:text="${items.name}"/>
         <td th:text="${items.description}"/>
-        <td class ="centered" th:text="${items.price}"/>
+        <td class ="centered" th:text="${items.price} + ${items.currency}" />
         <td class ="centered" th:text="${items.quantityOfStock}"/>
     </tr>
 </table>
