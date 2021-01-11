@@ -4,6 +4,7 @@ import com.greenfoxacademy.demo.model.ShopItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -79,4 +80,23 @@ public class WebshopController {
         return "index";
     }
 
+    @GetMapping("/search-bar")
+    public String searchBar(Model model, @RequestParam String searchedItem) {
+        List<ShopItem> listOfSearchedItems = shopItems
+                .stream()
+                .filter(s -> (s.getDescription() + s.getName())
+                        .toLowerCase()
+                        .contains(searchedItem.toLowerCase()))
+                .collect(Collectors.toList());
+        model.addAttribute("itemsList", listOfSearchedItems);
+        if (listOfSearchedItems.isEmpty()) {
+            model.addAttribute("noItemMessage", "No item found");
+        } else {
+            model.addAttribute("noItemMessage", "");
+
+        }
+        return "index";
+
+    }
 }
+

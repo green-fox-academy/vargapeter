@@ -13,15 +13,17 @@
 <div id ="head-container">
     <a href="/only-available" class="header-buttons" >only available</a>
     <a href="/cheapest-first" class="header-buttons">cheapest first</a>
-    <a href="/contains-nike" class="header-buttons">contains nike</a>
+    <a href="/search-bar?searchedItem=nike" class="header-buttons">contains nike</a>
     <a href="average-stock" class="header-buttons">average stock</a>
     <a href="/most-expensive-available" class="header-buttons">most expensive available</a>
 </div>
+<form action="/search-bar">
 <div ><p class="search">Search for:</p>
-    <input type="search" id="item-search" name="search-item" placeholder="...something like nike"
+    <input type="search" id="searchedItem" name="searchedItem" placeholder="...something like nike"
            aria-label="Search through site content">
     <button id="search-button" >Search</button>
 </div>
+</form>
 <table>
     <tr>
         <th>Name</th>
