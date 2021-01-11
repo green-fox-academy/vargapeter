@@ -14,17 +14,22 @@ public class WebshopController {
     private List<ShopItem> shopItems = new ArrayList();
 
     public WebshopController() {
-        shopItems.add(new ShopItem("Running shoes", "Nike running shoes for every day sport", 1000.0, 5, "Kc"));
-        shopItems.add(new ShopItem("Printer", "Some HP printer that will print pages", 3000.0, 2, "Kc"));
-        shopItems.add(new ShopItem("Coca cola", "0.5l standard coke", 25.0, 0, "Kc"));
-        shopItems.add(new ShopItem("Wokin", "Chicken with fried rice and WOKIN sauce", 119.0, 100, "Kc"));
-        shopItems.add(new ShopItem("T-shirt", "Blue with a corgi on a bike", 300.0, 1, "Kc"));
+        shopItems.add(new ShopItem("Running shoes", "Nike running shoes for every day sport", 1000.0, 5, "Kc", "clothes"));
+        shopItems.add(new ShopItem("Printer", "Some HP printer that will print pages", 3000.0, 2, "Kc", "electronics"));
+        shopItems.add(new ShopItem("Coca cola", "0.5l standard coke", 25.0, 0, "Kc", "food"));
+        shopItems.add(new ShopItem("Wokin", "Chicken with fried rice and WOKIN sauce", 119.0, 100, "Kc", "food"));
+        shopItems.add(new ShopItem("T-shirt", "Blue with a corgi on a bike", 300.0, 1, "Kc", "clothes"));
     }
 
     @GetMapping("/webshop")
     public String landing(Model model) {
         model.addAttribute("itemsList", shopItems);
         return "index";
+
+    } @GetMapping("/more")
+    public String moreFilters(Model model) {
+        model.addAttribute("itemsList", shopItems);
+        return "more";
     }
 
     @GetMapping("/only-available")
@@ -98,6 +103,58 @@ public class WebshopController {
         return "index";
     }
 
+    @GetMapping("/clothes-and-shoes")
+    public String clothesAndShoes(Model model) {
+        String clothes = "clothes";
+        List<ShopItem> clothesAndShoes = shopItems
+                .stream()
+                .filter(s -> s.getType()
+                        .toLowerCase()
+                        .contains(clothes))
+                .collect(Collectors.toList());
+        model.addAttribute("itemsList", clothesAndShoes);
+        if (clothesAndShoes.isEmpty()) {
+            model.addAttribute("noItemMessage", "No item found");
+        } else {
+            model.addAttribute("noItemMessage", "");
+        }
+        return "more";
+    }
+
+    @GetMapping("/electronics")
+    public String listofElectronics(Model model) {
+        String electronics = "electronics";
+        List<ShopItem> clothesAndShoes = shopItems
+                .stream()
+                .filter(s -> s.getType()
+                        .toLowerCase()
+                        .contains(electronics))
+                .collect(Collectors.toList());
+        model.addAttribute("itemsList", clothesAndShoes);
+        if (clothesAndShoes.isEmpty()) {
+            model.addAttribute("noItemMessage", "No item found");
+        } else {
+            model.addAttribute("noItemMessage", "");
+        }
+        return "more";
+
+    }    @GetMapping("/beverage-and-snacks")
+    public String listofBeveragesSnacks(Model model) {
+        String beverageSnack = "food";
+        List<ShopItem> clothesAndShoes = shopItems
+                .stream()
+                .filter(s -> s.getType()
+                        .toLowerCase()
+                        .contains(beverageSnack))
+                .collect(Collectors.toList());
+        model.addAttribute("itemsList", clothesAndShoes);
+        if (clothesAndShoes.isEmpty()) {
+            model.addAttribute("noItemMessage", "No item found");
+        } else {
+            model.addAttribute("noItemMessage", "");
+        }
+        return "more";
+    }
 
 }
 

@@ -14,9 +14,17 @@ a {
 
 }
 
+header{
+    display: inline;
+}
+
 h1 {
     /*all h1 will be this color*/
     color: lightskyblue;
+}
+
+#more{
+    float: right;
 }
 
 body {
@@ -25,10 +33,13 @@ body {
     margin-right: 10%;
 }
 
+
 hr {
-    /* set all line to 1px high and the color */
-    background-color: lightskyblue;
+    border: none;
     height: 1px;
+    /* Set the hr color */
+    color:lightskyblue;
+    background-color: lightskyblue; /* Modern Browsers */
 }
 
 .header-buttons {

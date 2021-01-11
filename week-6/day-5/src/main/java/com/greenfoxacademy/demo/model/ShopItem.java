@@ -6,13 +6,16 @@ public class ShopItem {
     private Double price;
     private Integer quantityOfStock;
     private String currency;
+    private String type;
 
-    public ShopItem(String name, String description, Double price, Integer quantityOfStock, String currency) {
+    public ShopItem(String name, String description, Double price, Integer quantityOfStock, String currency, String type) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantityOfStock = quantityOfStock;
         this.currency = currency;
+        this.type = type;
+
     }
 
     public String getName() {
@@ -53,5 +56,13 @@ public class ShopItem {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
