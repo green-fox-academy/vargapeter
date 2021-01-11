@@ -24,7 +24,7 @@ h1 {
 }
 
 #more{
-    float: right;
+    text-align: right;
 }
 
 body {
