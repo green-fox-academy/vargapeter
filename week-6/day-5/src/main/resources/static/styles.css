@@ -1,3 +1,7 @@
+html{
+    font-family: "Courier Prime";
+}
+
 #head-container {
     /*set the width full screen*/
     width: 100%;
@@ -43,7 +47,7 @@ hr {
 }
 
 .header-buttons {
-    background-color: red;
+    background-color: orangered;
     color: white;
     /*set the outside border to curve the corners*/
     border-radius: 6px;
@@ -63,12 +67,14 @@ a:hover {
     color: orangered;
     /*set it to relative will allow u to move it from the original position (left, right, top, bottom, + , - */
     position: relative;
+    display: flex;
     top: 16px;
 }
 
 /*make distance between input and table*/
 #item-search {
     margin-bottom: 15px;
+
 }
 
 /*set still for all input*/
