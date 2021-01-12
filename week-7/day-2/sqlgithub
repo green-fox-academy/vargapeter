@@ -1,0 +1,98 @@
+Microsoft Windows [Version 10.0.18363.1256]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\User>mysql
+ERROR 1045 (28000): Access denied for user 'ODBC'@'localhost' (using password: NO)
+
+C:\Users\User>mysql -u root -m
+mysql: [ERROR] mysql: unknown option '-m'.
+
+C:\Users\User>mysql -u root -p
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use Mastercontrol;
+Database changed
+mysql> mysql> select title from movie where director = "Steven Spielberg";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> select title from movie where director = "Steven Spielberg"' at line 1
+mysql> select title from movie where director = "Steven Spielberg";
++-------------------------+
+| title                   |
++-------------------------+
+| E.T.                    |
+| Raiders of the Lost Ark |
++-------------------------+
+2 rows in set (0.00 sec)
+
+mysql> select distinct year from movie inner join rating on movie.mID = Rating.mID where stars >= 4 order by year asc;
++------+
+| year |
++------+
+| 1937 |
+| 1939 |
+| 1981 |
+| 2009 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select title from movie where mID not in (select mID from rating);
++-----------+
+| title     |
++-----------+
+| Star Wars |
+| Titanic   |
++-----------+
+2 rows in set (0.00 sec)
+
+mysql> select title from movie left join rating on movie.mID = rating.mID where stars is NULL;
++-----------+
+| title     |
++-----------+
+| Star Wars |
+| Titanic   |
++-----------+
+2 rows in set (0.00 sec)
+
+mysql> select name from reviewer left join rating on reviewer.rID = rating.rID where ratingDate is NULL;
++---------------+
+| name          |
++---------------+
+| Daniel Lewis  |
+| Chris Jackson |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql> select name,title,stars,ratingDate from reviewer join rating on reviewer.rID=rating.rID join movie on movie.mID = rating.mID order by name asc, title asc, stars asc;
++------------------+-------------------------+-------+------------+
+| name             | title                   | stars | ratingDate |
++------------------+-------------------------+-------+------------+
+| Ashley White     | E.T.                    |     3 | 2011-01-02 |
+| Brittany Harris  | Raiders of the Lost Ark |     2 | 2011-01-30 |
+| Brittany Harris  | Raiders of the Lost Ark |     4 | 2011-01-12 |
+| Brittany Harris  | The Sound of Music      |     2 | 2011-01-20 |
+| Chris Jackson    | E.T.                    |     2 | 2011-01-22 |
+| Chris Jackson    | Raiders of the Lost Ark |     4 | NULL       |
+| Chris Jackson    | The Sound of Music      |     3 | 2011-01-27 |
+| Daniel Lewis     | Snow White              |     4 | NULL       |
+| Elizabeth Thomas | Avatar                  |     3 | 2011-01-15 |
+| Elizabeth Thomas | Snow White              |     5 | 2011-01-19 |
+| James Cameron    | Avatar                  |     5 | 2011-01-20 |
+| Mike Anderson    | Gone with the Wind      |     3 | 2011-01-09 |
+| Mike Anderson    | Gone with the Wind      |     3 | 2011-01-09 |
+| Sarah Martinez   | Gone with the Wind      |     2 | 2011-01-22 |
+| Sarah Martinez   | Gone with the Wind      |     4 | 2011-01-27 |
++------------------+-------------------------+-------+------------+
+15 rows in set (0.00 sec)
+
+mysql>  
