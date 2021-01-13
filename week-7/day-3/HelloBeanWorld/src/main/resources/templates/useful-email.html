@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body th:style="'color:' + (${valid} ? 'green' : 'red')">
+<p th:text="${email} + (${valid} ? ' is a valid email address' : ' is not a valid email address')"/>
 <a href="/useful" class="links">useful</a>
-
 </body>
 </html>

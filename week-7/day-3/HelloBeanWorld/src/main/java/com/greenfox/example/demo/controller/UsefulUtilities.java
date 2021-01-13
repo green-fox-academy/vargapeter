@@ -4,6 +4,9 @@ import com.greenfox.example.demo.service.UtilityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.regex.Pattern;
 
 @Controller
 public class UsefulUtilities {
@@ -22,10 +25,14 @@ public class UsefulUtilities {
 
     }
 
-    @GetMapping("/random-string")
-    public String stringpage(Model model) {
-        model.addAttribute("randomString", utility.caesar("1", 1));
+    @GetMapping("/useful/email")
+    public String stringpage(Model model, @RequestParam String email) {
+        boolean isValid = Pattern.matches("^[a-z-0-9-]+@[a-z][a-z-0-9-]+(\\.[a-z-0-9-]+)+$", email);
+        model.addAttribute("valid", isValid);
+        model.addAttribute("email", email);
         return "useful-email";
 
     }
+
+
 }
