@@ -27,8 +27,7 @@ public class UsefulUtilities {
 
     @GetMapping("/useful/email")
     public String stringpage(Model model, @RequestParam String email) {
-        boolean isValid = Pattern.matches("^[a-z-0-9-]+@[a-z][a-z-0-9-]+(\\.[a-z-0-9-]+)+$", email);
-        model.addAttribute("valid", isValid);
+        model.addAttribute("valid", utility.isValid(email));
         model.addAttribute("email", email);
         return "useful-email";
 
