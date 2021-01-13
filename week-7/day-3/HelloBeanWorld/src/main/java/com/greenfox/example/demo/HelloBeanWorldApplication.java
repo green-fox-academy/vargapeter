@@ -19,21 +19,20 @@ public class HelloBeanWorldApplication implements CommandLineRunner {
         SpringApplication.run(HelloBeanWorldApplication.class, args);
     }
 
-    @Autowired //2
+    @Autowired
     HelloBeanWorldApplication(MyColor myColor, Printer printer){
         this.printer = printer;
         this.myColor = myColor;
     }
+
+//    @Autowired //1
+//    HelloBeanWorldApplication(Printer printer) {
+//        this.printer = printer;
+//    }
 
     @Override
     public void run(String... args) throws Exception {
         printer.log(myColor.printColor()); //1
 
     }
-//    @Autowired //1
-//    HelloBeanWorldApplication(Printer printer) {
-//        this.printer = printer;
-
-//    }
-
 }

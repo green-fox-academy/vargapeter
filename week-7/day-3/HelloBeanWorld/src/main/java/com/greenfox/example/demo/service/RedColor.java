@@ -1,5 +1,6 @@
 package com.greenfox.example.demo.service;
 
+
 public class RedColor implements MyColor {
 
     @Override
