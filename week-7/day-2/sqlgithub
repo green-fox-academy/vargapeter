@@ -95,4 +95,7 @@ mysql> select name,title,stars,ratingDate from reviewer join rating on reviewer.
 +------------------+-------------------------+-------+------------+
 15 rows in set (0.00 sec)
 
-mysql>  
+mysql>Select reviewer.name, movie.title 
+From rating as r1 join rating as r2 on r2.rID=r1.rID and r2.mID=r1.mID and r2.ratingDate > r1.ratingDate and r2.stars>r1.stars
+Left join movie on movie.mID=r1.mID 
+Left join reviewer on reviewer.rID=r1.rID;
