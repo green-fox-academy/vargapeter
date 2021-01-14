@@ -11,16 +11,22 @@
 
 <form method="post" action="/add-fox">
 
+
+    <br>
+    <br>
+
+    <label for="food">Food:</label>
+    <select name="food" id="food">
+        <option th:text="${Food}" th:value="${Food}" th:each="Food: ${foodList}">
+    </select>
+
+    <label for="drink">Drink:</label>
+    <select name="drink" id="drink">
+        <option th:text="${Drink}" th:value="${Drink}" th:each="Drink: ${drinkList}">
+    </select>
+
     <button type="submit" value="submit">Change</button>
 
-    <br>
-    <br>
-
-    <label for="tricks">Tricks:</label>
-
-    <select name="tricks" id="tricks">
-        <option th:text="${FoxTricks}" th:value="${FoxTricks}" th:each="FoxTricks: ${foxTricksList}">
-    </select>
     <br>
 
 </form>
