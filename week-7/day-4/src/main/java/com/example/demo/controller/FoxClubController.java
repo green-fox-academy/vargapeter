@@ -35,14 +35,16 @@ public class FoxClubController {
 
     }
 
-//    @PostMapping("/login")
-//    public String login(String name) {
-//        return "redirect:/?name=" + name;
-//
-//    }
+    @GetMapping("/nutrition-store")
+    public String nutritionStore(Model model) {
+        model.addAttribute("foodList", foxService.getFoodList());
+        model.addAttribute("foodList", foxService.getDrinkList());
+        return "nutrition-store";
+
+    }
 
     @PostMapping("/add-fox")
-    public String addFox(@ModelAttribute Fox fox){
+    public String addFox(@ModelAttribute Fox fox) {
         foxService.addFox(fox);
         return "redirect:/";
     }

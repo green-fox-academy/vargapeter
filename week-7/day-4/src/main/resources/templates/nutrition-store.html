@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Programmer Fox Club!</title>
+</head>
+<body>
+
+<h1>Nutrition Store</h1>
+<p>Please select the food, and drink according to your pets preference!</p>
+
+<form method="post" action="/add-fox">
+
+    <button type="submit" value="submit">Change</button>
+
+    <br>
+    <br>
+
+    <label for="tricks">Tricks:</label>
+
+    <select name="tricks" id="tricks">
+        <option th:text="${FoxTricks}" th:value="${FoxTricks}" th:each="FoxTricks: ${foxTricksList}">
+    </select>
+    <br>
+
+</form>
+</body>
+</html>

@@ -8,6 +8,8 @@ public interface FoxService {
     void addFox(Fox fox);
     List<Fox> getFoxList();
     List<String> getFoxTricks();
+    List<String> getFoodList();
+    List<String> getDrinkList();
 
 
 }

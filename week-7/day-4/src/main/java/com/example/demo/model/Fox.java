@@ -5,13 +5,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Fox {
-    private String name;
-    private FoxTricks tricks;
+
+    //private FoxTricks tricks;
     private String food;
+    private String name;
+    private List<String> listOvTricks = new ArrayList<>();
+    private Integer numberOvTricks = listOvTricks.size();
+
 
 }

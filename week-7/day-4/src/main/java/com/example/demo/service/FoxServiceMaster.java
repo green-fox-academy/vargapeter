@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Drink;
+import com.example.demo.model.Food;
 import com.example.demo.model.Fox;
 import com.example.demo.model.FoxTricks;
 import org.springframework.stereotype.Service;
@@ -31,4 +33,19 @@ public class FoxServiceMaster implements FoxService {
                 .map(Enum::toString)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<String> getFoodList() {
+        return Arrays.stream(Food.values())
+                .map(Enum::toString)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> getDrinkList() {
+        return Arrays.stream(Drink.values())
+                .map(Enum::toString)
+                .collect(Collectors.toList());
+    }
+
 }
