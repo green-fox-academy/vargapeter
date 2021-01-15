@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
+    <link th:href="@{styles.css}" rel="stylesheet" />
     <meta charset="UTF-8">
     <title>Welcome to Programmer Fox Club!</title>
 </head>
 <body>
-
+<ul>
+    <li><a href="/" class="index">index</a></li>
+    <li><a href="/login" class="Information">Information</a></li>
+    <li><a href="/nutrition-store" class="nutrition-store">Nutrition Store</a></li>
+    <li><a href="/trick-center" class="trick-center">Trick Center</a></li>
+    <li><a href="/action-history" class="action-history">Action History</a></li>
+</ul>
 <h1>Welcome to Programmer Fox Club!</h1>
 <p>Please provide a name, so you can associate it to your pet!</p>
 
@@ -13,16 +20,6 @@
     <label for="name">Name:</label>
     <input type="text" id="name" name="name">
     <button type="submit" value="submit">GO</button>
-
-    <br>
-    <br>
-
-    <label for="tricks">Tricks:</label>
-
-    <select name="tricks" id="tricks">
-        <option th:text="${FoxTricks}" th:value="${FoxTricks}" th:each="FoxTricks: ${foxTricksList}">
-    </select>
-    <br>
 
 </form>
 </body>

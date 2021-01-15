@@ -1,0 +1,106 @@
+html {
+    margin-left: 10%;
+    margin-right: 10%;
+    font-family: "Courier Prime";
+
+
+    }
+
+header{
+    display: inline;
+}
+
+h1 {
+    /*all h1 will be this color*/
+    color: forestgreen;
+}
+
+
+body {
+    /*set the margin both side n% */
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+
+hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color:forestgreen;
+    background-color: forestgreen; /* Modern Browsers */
+}
+
+.header-buttons {
+    background-color: forestgreen;
+    color: white;
+    /*set the outside border to curve the corners*/
+    border-radius: 6px;
+    /*originally there is an underline for the links, we turn that and  a few other things off*/
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/*a:hover = when u go over all the a (links) it will change the colors of it*/
+a:hover {
+    background-color: greenyellow;
+    color: forestgreen;
+}
+
+/*position the "search for:" */
+.submit {
+    color: forestgreen;
+    /*set it to relative will allow u to move it from the original position (left, right, top, bottom, + , - */
+    position: relative;
+    display: flex;
+    top: 16px;
+}
+
+/*make distance between input and table*/
+#item-search {
+    margin-bottom: 15px;
+
+}
+
+/*set still for all input*/
+input {
+    border-color: forestgreen;
+    width: 30%;
+    font-size: 20px;
+}
+
+/*style search button*/
+#search-button {
+    background-color: forestgreen;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    width: 10%;
+    height: 3em;
+}
+
+/*table header style*/
+th {
+    background-color: forestgreen;
+    padding: 20px;
+}
+
+/*table data style*/
+td {
+    font-size: 20px;
+}
+
+/*centering the numbers in the table*/
+.centered {
+    text-align: center;
+}
+
+#average {
+    font-weight: bold;
+}
+
+#list{
+    margin-left: 3%;
+    margin-right: 5%;
+}

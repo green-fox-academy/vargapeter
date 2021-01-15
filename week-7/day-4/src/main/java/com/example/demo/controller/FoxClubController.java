@@ -38,8 +38,15 @@ public class FoxClubController {
     @GetMapping("/nutrition-store")
     public String nutritionStore(Model model) {
         model.addAttribute("foodList", foxService.getFoodList());
-        model.addAttribute("foodList", foxService.getDrinkList());
+        model.addAttribute("drinkList", foxService.getDrinkList());
         return "nutrition-store";
+
+    }
+
+    @GetMapping("/trick-center")
+    public String trickCenter(Model model) {
+        model.addAttribute("foxTricksList", foxService.getFoxTricks());
+        return "trick-center";
 
     }
 
@@ -47,6 +54,12 @@ public class FoxClubController {
     public String addFox(@ModelAttribute Fox fox) {
         foxService.addFox(fox);
         return "redirect:/";
+    }
+
+    @GetMapping("/action-history")
+    public String actionHistory(Model model) {
+        return "action-history";
+
     }
 
 }

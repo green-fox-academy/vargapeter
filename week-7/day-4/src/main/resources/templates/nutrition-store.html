@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
+    <link th:href="@{styles.css}" rel="stylesheet" />
     <meta charset="UTF-8">
-    <title>Welcome to Programmer Fox Club!</title>
+    <title></title>
 </head>
 <body>
+<ul>
+    <li><a href="/" class="index">index</a></li>
+    <li><a href="/login" class="Information">Information</a></li>
+    <li><a href="/nutrition-store" class="nutrition-store">Nutrition Store</a></li>
+    <li><a href="/trick-center" class="trick-center">Trick Center</a></li>
+    <li><a href="/action-history" class="action-history">Action History</a></li>
+</ul>
 
 <h1>Nutrition Store</h1>
 <p>Please select the food, and drink according to your pets preference!</p>
-
 <form method="post" action="/add-fox">
-
-
-    <br>
-    <br>
 
     <label for="food">Food:</label>
     <select name="food" id="food">

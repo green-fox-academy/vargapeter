@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<body lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <link th:href="@{styles.css}" rel="stylesheet" />
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-
+<body>
 <ul>
     <li><a href="/" class="index">index</a></li>
     <li><a href="/login" class="Information">Information</a></li>
@@ -14,17 +14,12 @@
     <li><a href="/action-history" class="action-history">Action History</a></li>
 </ul>
 
-<h1>Trick Center</h1>
-<p>Please select the trick you want to teach to your pet!</p>
-<form method="post" action="/add-fox">
-    <label for="tricks">Tricks:</label>
+<h1>Action History</h1>
+<ul>
+    <li>2021.January 01. 11:11:11: Creation of everything: awesome</li>
+    <li>2021.January 11. 11:11:11: Creation of everything: awesome</li>
+    <li>2021.January 15. 11:11:11: Creation of everything: awesome</li>
+</ul>
 
-    <select name="tricks" id="tricks">
-        <option th:text="${FoxTricks}" th:value="${FoxTricks}" th:each="FoxTricks: ${foxTricksList}">
-    </select>
-
-    <button type="submit" value="submit">Learn</button>
-
-</form>
 </body>
 </html>
