@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .urgent-true {
+            color: red;
+        }
+
+        td {
+            border: 1px solid grey;
+        }
+    </style>
+</head>
+<body>
+<h1>TODOS FOR TODAY:</h1>
+<p><a href="/add-todo-form">Add new todo</a></p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>ACTION</th>
+        <th>DONE</th>
+        <th>URGENT</th>
+    </tr>
+    <tr th:each="todo:${todoList}">
+        <td th:text="${todo.id}"></td>
+        <td th:text="${todo.title}"></td>
+        <td th:text="${todo.done}"></td>
+        <td th:text="${todo.urgent}" th:attr="class='urgent-'+${todo.urgent}"></td>
+        <td><a th:attr="href='/' + ${todo.id} +'/delete'">delete</a></td>
+        <td><a th:attr="href='/' + ${todo.id} +'/edit'">edit</a></td>
+    </tr>
+</table>
+</body>
+</html>
