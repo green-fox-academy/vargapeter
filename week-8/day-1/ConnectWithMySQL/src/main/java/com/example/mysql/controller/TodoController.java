@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class TodoController {
@@ -59,6 +61,26 @@ public class TodoController {
         todoRepository.save(todo);
         return "redirect:/";
     }
+
+    @PostMapping("/search-bar")
+    public String searchBar(Model model, @RequestParam String searchedTodo) {
+        List<Todo> listOfSearchedTodos = (List<Todo>)todoRepository.findAll();
+        listOfSearchedTodos = listOfSearchedTodos.stream()
+                .filter(t -> t.getTitle()
+                        .toLowerCase()
+                        .contains(searchedTodo.toLowerCase()))
+                .collect(Collectors.toList());
+        model.addAttribute("todoList", listOfSearchedTodos);
+        if (listOfSearchedTodos.isEmpty()) {
+            model.addAttribute("noItemMessage", "There is nothing to do");
+        } else {
+            model.addAttribute("noItemMessage", "");
+
+        }
+        return "todo";
+    }
+
+
 
 
 
