@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import xyz.loveboat.reddit.model.Post;
 import xyz.loveboat.reddit.model.User;
+import xyz.loveboat.reddit.repository.UserRepository;
 import xyz.loveboat.reddit.service.RedditService;
 import xyz.loveboat.reddit.service.UserService;
 
@@ -15,44 +16,55 @@ public class RedditController {
     private RedditService redditService;
     private UserService userService;
 
-
     @Autowired
-    public RedditController(RedditService redditService) {
+    public RedditController(RedditService redditService, UserService userService) {
         this.redditService = redditService;
+        this.userService = userService;
     }
 
-    public RedditController(UserService userService) { this.userService = userService;
-    }
-
-    @GetMapping(value = {"/"})
-    public String landing(Model model) {
+    @GetMapping(value = {"/{uid}"})
+    public String landing(Model model, @PathVariable Long uid) {
+        User user = userService.getUser(uid);
         model.addAttribute("postList", redditService.postList());
+        model.addAttribute("user", user);
         return "index";
     }
 
-    @GetMapping("/add-post-form")
-    public String postForm() {
+    @GetMapping(value = {"/"})
+    public String root(Model model) {
+        return "redirect:/login-form";
+    }
+
+    @GetMapping("/{uid}/add-post-form")
+    public String postForm(Model model, @PathVariable Long uid) {
+        User user = userService.getUser(uid);
+        model.addAttribute("user", user);
         return "add-post-form";
     }
 
-    @PostMapping("/add-post")
-    public String addPost(@ModelAttribute Post post, User user){
+    @PostMapping("/{uid}/add-post")
+    public String addPost(Model model, @ModelAttribute Post post, @PathVariable Long uid) {
+        User user = userService.getUser(uid);
+        post.setUser(user);
         redditService.addPost(post);
-        return "redirect:/";
+        model.addAttribute("user", user);
+        return "redirect:/" + uid;
     }
 
-    @GetMapping("/{id}/downvote")
-    public String downvote(@PathVariable("id") Long id){
-        Post downvoted = redditService.downvote(id);
-        redditService.addPost(downvoted);
-        return "redirect:/";
+    @GetMapping("/{uid}/{id}/downvote")
+    public String downvote(Model model, @PathVariable("id") Long id, @PathVariable Long uid) {
+        User user = userService.getUser(uid);
+        redditService.downvote(id);
+        model.addAttribute("user", user);
+        return "redirect:/" + uid;
     }
 
-    @GetMapping("/{id}/upvote")
-    public String upvote(@PathVariable("id") Long id){
-        Post upvoted = redditService.upvote(id);
-        redditService.addPost(upvoted);
-        return "redirect:/";
+    @GetMapping("/{uid}/{id}/upvote")
+    public String upvote(Model model, @PathVariable("id") Long id, @PathVariable Long uid) {
+        User user = userService.getUser(uid);
+        redditService.upvote(id);
+        model.addAttribute("user", user);
+        return "redirect:/" + uid;
     }
 
 }

@@ -23,8 +23,9 @@ public class RedditService {
 
 
     public List<Post> postList() {
-        List<Post> allPost = (List<Post>) redditRepository.findAll();
-        List<Post> orderedPost = allPost.stream().sorted(Comparator.comparing(Post::getRating).reversed()).collect(Collectors.toList());
+        //List<Post> allPost = (List<Post>) redditRepository.findAll();
+        //List<Post> orderedPost = allPost.stream().sorted(Comparator.comparing(Post::getRating).reversed()).collect(Collectors.toList());
+        List<Post>orderedPost = redditRepository.findAllByOrderByRatingDesc();
         return orderedPost;
     }
 
@@ -32,22 +33,22 @@ public class RedditService {
         redditRepository.save(post);
     }
 
-    public Post downvote(Long id) {
-        Optional<Post> downvote = redditRepository.findById(id);
-        if (downvote.isPresent()) {
-            Post updatePost = downvote.get();
+    public void downvote(Long id) {
+        Optional<Post> optionalPost = redditRepository.findById(id);
+        if (optionalPost.isPresent()) {
+            Post updatePost = optionalPost.get();
             updatePost.setRating(updatePost.getRating() - 1);
-            return updatePost;
-        } else return null;
+            redditRepository.save(updatePost);
+        }
     }
 
-    public Post upvote(Long id) {
-        Optional<Post> upvote = redditRepository.findById(id);
-        if (upvote.isPresent()) {
-            Post updatePost = upvote.get();
+    public void upvote(Long id) {
+        Optional<Post> optionalPost = redditRepository.findById(id);
+        if (optionalPost.isPresent()) {
+            Post updatePost = optionalPost.get();
             updatePost.setRating(updatePost.getRating() + 1);
-            return updatePost;
-        } else return null;
+            redditRepository.save(updatePost);
+        }
     }
 
 }

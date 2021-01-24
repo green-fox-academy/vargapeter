@@ -8,12 +8,11 @@
 <body>
 <div class=container>
     <div class=row>
-        <div class=col-11>
-            <p><a id="sub" href="/add-post-form">Submit new post</a></p>
+        <div class=col-9>
+            <p><a id="sub" th:attr="href='/'+${user.id}+'/add-post-form'">Submit new post</a></p>
         </div>
-        <div class=col-1 bgcolor="green">
-
-            <p><a id="log" href="/login">Login</a></p>
+        <div class="col-3">
+            <p>Logged in as <b th:text="${user.name}"/> <a id="log" href="/">Logout</a></p>
         </div>
 
     </div>
@@ -23,11 +22,9 @@
 
         <tr th:each="post:${postList}">
 
+            <td><a th:attr="href='/' + ${user.id} + '/' + ${post.id} +'/downvote'">-</a></td>
             <td th:text="${post.rating}"></td>
-
-
-            <td><a th:attr="href='/' + ${post.id} +'/upvote'">+</a></td>
-            <td><a th:attr="href='/' + ${post.id} +'/downvote'">-</a></td>
+            <td><a th:attr="href='/' + ${user.id} + '/' + ${post.id} +'/upvote'">+</a></td>
 
 
             <td><a th:text="${post.title}"

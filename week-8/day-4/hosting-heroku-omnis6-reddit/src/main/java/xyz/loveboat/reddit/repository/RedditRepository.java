@@ -9,6 +9,5 @@ import java.util.List;
 @Repository
 public interface RedditRepository extends CrudRepository<Post, Long> {
 
-
-
+    List<Post> findAllByOrderByRatingDesc();
 }
