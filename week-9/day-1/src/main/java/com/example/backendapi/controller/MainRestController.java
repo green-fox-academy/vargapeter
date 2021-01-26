@@ -6,11 +6,13 @@ import com.example.backendapi.service.AppendaService;
 import com.example.backendapi.service.DoublingService;
 import com.example.backendapi.service.DountilService;
 import com.example.backendapi.service.GreeterService;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class MainRestController {
@@ -42,16 +44,13 @@ public class MainRestController {
     public ResponseEntity<?> Greeter(@RequestParam(required = false) String name, String title) {
         try {
             return ResponseEntity.ok(greeterService.greeter(name, title));
-        } catch (GreeterNotFoundException e) {
+        } catch (GreeterNotFoundException exception) {
             if (title == null && name == null) {
-                GreetingError greetingError = new GreetingError("Please provide a name and a title!");
-                return new ResponseEntity<>(greetingError, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(new GreetingErrorDTO(exception.getMessage()), HttpStatus.BAD_REQUEST);
             } else if (title == null) {
-                GreetingError greetingError = new GreetingError("Please provide a title!");
-                return new ResponseEntity<>(greetingError, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(new GreetingErrorDTO(exception.getMessage()), HttpStatus.BAD_REQUEST);
             } else {
-                GreetingError greetingError = new GreetingError("Please provide a name!");
-                return new ResponseEntity<>(greetingError, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(new GreetingErrorDTO(exception.getMessage()), HttpStatus.BAD_REQUEST);
             }
         }
     }
@@ -61,8 +60,8 @@ public class MainRestController {
         try {
             return ResponseEntity.ok(appendaService.appenda(string));
         } catch (GreeterNotFoundException e) {
-            GreetingError greetingError = new GreetingError();
-            return new ResponseEntity<>(greetingError, HttpStatus.NOT_FOUND);
+            GreetingErrorDTO greetingErrorDTO = new GreetingErrorDTO();
+            return new ResponseEntity<>(greetingErrorDTO, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -70,11 +69,29 @@ public class MainRestController {
     public ResponseEntity<?> Dountil(@PathVariable String action, @RequestBody Until until) {
         try {
             return ResponseEntity.ok(dountilService.dountil(action, until.getUntil()));
-        } catch (GreeterNotFoundException e) {
-            GreetingError greetingError = new GreetingError();
-            return new ResponseEntity<>(greetingError, HttpStatus.NOT_FOUND);
+        } catch (DountilException exception) {
+            GreetingErrorDTO greetingErrorDTO = new GreetingErrorDTO();
+            return new ResponseEntity<>(greetingErrorDTO, HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    @PostMapping("/arrays")
+    public ResponseEntity<?> arrays(@RequestBody Array array){
+        if (array.getWhat().isEmpty()){
+            ArrayError arrayError = new ArrayError("Please provide what to do with the numbers!");
+            return ResponseEntity.ok(arrayError);
+        } else if (array.getWhat().equals("sum")) {
+            int result = array.getNumbers().stream().mapToInt(n -> n).sum();
+            return ResponseEntity.ok(result);
+        } else if (array.getWhat().equals("multiply")) {
+            int result = array.getNumbers().stream().reduce(1,(a,b)->a*b);
+            return ResponseEntity.ok(result);
+        } else if (array.getWhat().equals("double")) {
+            List<Integer> result = array.getNumbers().stream().map(n -> n * 2).collect(Collectors.toList());
+            return ResponseEntity.ok(result);
+        }
+        else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 }

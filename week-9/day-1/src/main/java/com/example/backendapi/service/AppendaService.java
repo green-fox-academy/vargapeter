@@ -11,7 +11,7 @@ public class AppendaService {
 
     public Appenda appenda(String string) throws GreeterNotFoundException {
         if (string == null){
-            throw new GreeterNotFoundException();
+            throw new GreeterNotFoundException("");
         }
         else return new Appenda(string);
     }

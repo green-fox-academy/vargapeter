@@ -4,14 +4,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class GreetingError {
-    private String error;
+public class Array {
 
-    public GreetingError(String error) {
-        this.error = error;
-    }
+    private String what;
+    private List<Integer> numbers;
+
+
 }
-
