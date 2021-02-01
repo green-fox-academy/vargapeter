@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class=container>
+
+    <p th:if="${post.url != null && (aliasError == false || aliasError == null)}">
+        Your URL is aliased to <strong th:text="${post.alias}"/> and your secret code is <strong
+            th:text="${post.secretCode}"/>.
+    </p>
+    <p style="color:red;" th:if="${aliasError == true}">
+        Your alias is already in use.
+    </p>
+
+    <form method="post" action="/save-link">
+        <label for="url">URL:</label><br/>
+        <input type="text" id="url" name="url" maxlength="255" th:value="${newPost.url}">
+        <br>
+        <label for="alias">Alias:</label><br/>
+        <input type="text" id="alias" name="alias" th:value="${newPost.alias}">
+        <br>
+        <button type="submit" value="submit">Submit</button>
+    </form>
+
+</div>
+</body>
+</html>
