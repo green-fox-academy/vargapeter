@@ -36,6 +36,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    compile "com.squareup.retrofit2:retrofit:2.3.0"
+    compile "com.squareup.retrofit2:converter-gson:2.3.0"
+    compile "com.squareup.okhttp3:logging-interceptor:3.9.0"
 }
 
 test {

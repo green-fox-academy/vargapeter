@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.model.AuthenticationRequest;
 import com.example.demo.model.AuthenticationResponse;
+import com.example.demo.model.GenreListDTO;
 import com.example.demo.service.MyUserDetailsService;
+import com.example.demo.service.ServiceService;
 import com.example.demo.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +12,23 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+
+
+import java.io.IOException;
 
 @RestController
 public class DemoRestController {
+
+    private ServiceService serviceService;
+
+    public DemoRestController() {
+        this.serviceService = new ServiceService();
+    }
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -49,5 +61,12 @@ public class DemoRestController {
         final String jwt = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
+
+    @GetMapping("/genres")
+    public ResponseEntity<GenreListDTO> getAllGenres() throws IOException {
+        return ResponseEntity.ok(serviceService.getGenreList());
+    }
+
+
 }
 
